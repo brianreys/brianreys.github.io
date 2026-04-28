@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brian Rey · Data Specialist & BI Analyst</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --c1:#1a1a2e;--c2:#16213e;--c3:#0f3460;
+  --accent:#e94560;--accent2:#533483;
+  --text:#f0f0f0;--muted:#a0a0b0;
+  --card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);
+  --font:system-ui,-apple-system,sans-serif
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--c1);color:var(--text);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(10,10,20,0.96);backdrop-filter:blur(12px);
+  padding:14px 40px;display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid rgba(255,255,255,0.06)
+}
+.nav-logo{font-weight:600;font-size:15px;color:#fff;text-decoration:none}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:13px;color:rgba(255,255,255,0.55);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-right{display:flex;align-items:center;gap:14px}
+.lang-switcher{display:flex;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.lang-btn{background:transparent;border:none;color:rgba(255,255,255,0.5);padding:5px 11px;font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font);letter-spacing:.04em;transition:background .2s,color .2s}
+.lang-btn.active{background:var(--accent);color:#fff}
+
+/* HERO */
+.hero{
+  background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);
+  padding:110px 40px 64px;text-align:center;
+  position:relative;overflow:hidden;
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(233,69,96,0.12) 0%,transparent 60%)}
+.hero::after{content:'';position:absolute;inset:0;opacity:.022;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px);background-size:48px 48px}
+.hero-content{position:relative;z-index:1}
+.hero-tag{display:inline-block;background:rgba(233,69,96,0.15);color:var(--accent);border:1px solid rgba(233,69,96,0.3);border-radius:20px;font-size:12px;padding:4px 14px;letter-spacing:1px;text-transform:uppercase;transition:background .2s,border-color .2s,transform .15s,box-shadow .2s}
+.hero h1{font-size:clamp(30px,5.5vw,52px);font-weight:600;color:#fff;margin-bottom:6px;animation:fadeUp .6s .25s both}
+.hero h1 span{color:var(--accent);animation:glowPulse 3s ease-in-out infinite}
+.hero-role{font-size:clamp(15px,2.2vw,20px);color:rgba(255,255,255,0.7);font-weight:400;margin-top:4px;animation:fadeUp .6s .35s both}
+.hero-sub{font-size:15px;color:rgba(255,255,255,0.6);max-width:540px;margin:16px auto 26px;line-height:1.7;animation:fadeUp .6s .45s both}
+.hero-sub strong{color:rgba(255,255,255,.85);font-weight:500}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp .6s .55s both}
+.btn-primary{background:var(--accent);color:#fff;border:none;padding:11px 26px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:var(--font);text-decoration:none;display:inline-block;transition:transform .15s,box-shadow .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(233,69,96,.3)}
+.btn-outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.25);padding:11px 26px;border-radius:8px;font-size:14px;cursor:pointer;font-family:var(--font);text-decoration:none;display:inline-block;transition:border-color .2s,background .2s}
+.btn-outline:hover{border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.05)}
+.hero-pills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:28px;animation:fadeUp .6s .65s both}
+.pill{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:5px 13px;font-size:12px;color:rgba(255,255,255,0.65)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes glowPulse{0%,100%{text-shadow:0 0 20px rgba(233,69,96,.45),0 0 40px rgba(233,69,96,.15)}50%{text-shadow:0 0 42px rgba(233,69,96,.8),0 0 80px rgba(233,69,96,.35)}}
+@keyframes orbFloat1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-55px,45px) scale(1.09)}66%{transform:translate(35px,-35px) scale(0.93)}}
+@keyframes orbFloat2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(75px,-55px) scale(1.13)}}
+@keyframes orbFloat3{0%,100%{transform:translate(0,0);opacity:.45}50%{transform:translate(45px,65px);opacity:.88}}
+
+/* Hero bg effects */
+#hero-particles{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0}
+.hero-orb-1{width:520px;height:520px;background:rgba(233,69,96,0.13);top:-160px;right:-160px;animation:orbFloat1 9s ease-in-out infinite}
+.hero-orb-2{width:400px;height:400px;background:rgba(83,52,131,0.2);bottom:-130px;left:-130px;animation:orbFloat2 11s ease-in-out infinite}
+.hero-orb-3{width:280px;height:280px;background:rgba(55,138,221,0.1);top:38%;left:12%;animation:orbFloat3 13s ease-in-out infinite}
+
+/* Hero role pills */
+.hero-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
+.hero-tags .hero-tag:nth-child(1){animation:fadeUp .6s .35s both}
+.hero-tags .hero-tag:nth-child(2){animation:fadeUp .6s .47s both}
+.hero-tags .hero-tag:nth-child(3){animation:fadeUp .6s .59s both}
+.hero-tags .hero-tag:hover{background:rgba(233,69,96,.3);border-color:rgba(233,69,96,.6);transform:translateY(-2px);box-shadow:0 4px 18px rgba(233,69,96,.22)}
+
+/* SECTIONS */
+section{padding:52px 40px}
+section:nth-child(even){background:rgba(255,255,255,0.015)}
+.section-label{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:8px}
+.section-title{font-size:clamp(20px,3vw,28px);font-weight:500;color:#fff;margin-bottom:30px}
+
+/* STATS */
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;margin-bottom:32px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;transition:border-color .2s,transform .2s}
+.stat:hover{border-color:rgba(233,69,96,.25);transform:translateY(-2px)}
+.stat-num{font-size:26px;font-weight:600;color:var(--accent)}
+.stat-lbl{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* CARDS */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:rgba(233,69,96,.2);transform:translateY(-3px)}
+.card-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:17px}
+.ic-red{background:rgba(233,69,96,0.15)}.ic-blue{background:rgba(83,52,131,0.25)}.ic-teal{background:rgba(29,158,117,0.15)}.ic-amber{background:rgba(234,199,117,0.15)}
+.card h3{font-size:14px;font-weight:500;color:#fff;margin-bottom:6px}
+.card p{font-size:12px;color:var(--muted);line-height:1.55}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:11px}
+.skill-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:13px 15px;display:flex;align-items:center;gap:10px;transition:border-color .2s,transform .2s}
+.skill-item:hover{border-color:rgba(233,69,96,.2);transform:translateX(3px)}
+.skill-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.d-red{background:#e94560}.d-purple{background:#7c5cbf}.d-teal{background:#1d9e75}.d-blue{background:#378add}.d-amber{background:#ef9f27}
+.skill-name{font-size:13px;color:rgba(255,255,255,0.8)}
+.skill-lvl{font-size:11px;color:var(--muted);margin-left:auto}
+
+/* EXPERIENCE */
+.exp-item{border-left:2px solid var(--accent);padding-left:22px;margin-bottom:28px;position:relative}
+.exp-item::before{content:'';width:9px;height:9px;border-radius:50%;background:var(--accent);position:absolute;left:-5.5px;top:5px;box-shadow:0 0 0 3px rgba(233,69,96,.14)}
+.exp-date{font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.exp-role{font-size:16px;font-weight:500;color:#fff;margin-bottom:2px}
+.exp-company{font-size:13px;color:var(--muted);margin-bottom:9px}
+.exp-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:10px}
+.exp-tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:5px;padding:3px 8px;font-size:11px;color:rgba(255,255,255,0.6)}
+
+/* PROJECTS */
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:20px;transition:border-color .25s}
+.project-card:hover{border-color:rgba(233,69,96,.22)}
+.project-header{padding:24px 24px 16px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.project-sector{font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.project-name{font-size:19px;font-weight:500;color:#fff;margin-bottom:9px}
+.project-desc{font-size:13px;color:var(--muted);max-width:560px;line-height:1.65}
+.project-badges{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end;padding-top:2px}
+.badge{border-radius:20px;padding:4px 11px;font-size:11px;font-weight:500;border:1px solid transparent}
+.badge-red{background:rgba(233,69,96,.12);border-color:rgba(233,69,96,.28);color:var(--accent)}
+.badge-purple{background:rgba(83,52,131,.2);border-color:rgba(83,52,131,.35);color:#a590ff}
+.badge-gray{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);color:var(--muted)}
+.embed-wrap{padding:0 24px 16px}
+.embed-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.embed-frame{border-radius:10px;overflow:hidden;border:1px solid var(--border);background:#111;aspect-ratio:16/9}
+.embed-frame iframe{width:100%;height:100%;border:none;display:block}
+.project-meta-row{padding:14px 24px;border-top:1px solid var(--border);display:flex;gap:28px;flex-wrap:wrap}
+.meta-item-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px}
+.meta-item-val{font-size:13px;color:#fff;font-weight:500}
+.coming-soon{background:rgba(255,255,255,.02);border:1px dashed rgba(255,255,255,.09);border-radius:12px;padding:44px;text-align:center}
+
+/* CV */
+.cv-band{background:rgba(233,69,96,.05);border-top:1px solid rgba(233,69,96,.1);border-bottom:1px solid rgba(233,69,96,.1)}
+.cv-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px}
+.cv-text h3{font-size:17px;font-weight:500;color:#fff;margin-bottom:4px}
+.cv-text p{font-size:13px;color:var(--muted)}
+.cv-btns{display:flex;gap:10px;flex-wrap:wrap}
+
+/* CONTACT */
+.contact-box{background:linear-gradient(135deg,rgba(233,69,96,.1),rgba(83,52,131,.15));border:1px solid rgba(233,69,96,.2);border-radius:14px;padding:36px;text-align:center}
+.contact-box h2{font-size:22px;font-weight:500;color:#fff;margin-bottom:8px}
+.contact-box p{font-size:14px;color:var(--muted);margin-bottom:24px;max-width:460px;margin-left:auto;margin-right:auto}
+.contact-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.clink{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:10px 18px;font-size:13px;color:rgba(255,255,255,.82);text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:border-color .2s,background .2s,transform .15s}
+.clink:hover{border-color:rgba(233,69,96,.4);background:rgba(233,69,96,.08);transform:translateY(-2px)}
+
+/* FOOTER */
+footer{background:rgba(0,0,0,0.3);padding:20px 40px;text-align:center;font-size:12px;color:var(--muted);border-top:1px solid var(--border)}
+footer span{color:var(--accent)}
+
+/* FADE IN */
+.fade-in{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.fade-in:nth-child(2){transition-delay:.08s}
+.fade-in:nth-child(3){transition-delay:.16s}
+.fade-in:nth-child(4){transition-delay:.24s}
+
+/* ABOUT PHOTO */
+.about-inner{display:grid;grid-template-columns:1fr 270px;gap:52px;align-items:center}
+.about-text .section-title{margin-bottom:16px}
+.photo-wrap{
+  position:relative;padding:3px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 50%,var(--accent) 100%);
+  background-size:200% 200%;
+  border-radius:26px;
+  animation:borderPulse 3s ease-in-out infinite,borderShift 5s ease infinite;
+}
+.photo-inner{
+  background:var(--c1);border-radius:24px;
+  overflow:hidden;position:relative;
+}
+.photo-inner::before{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:50%;
+  background:radial-gradient(ellipse at 50% 100%,rgba(233,69,96,.22),transparent 70%);
+  z-index:0;
+}
+.profile-img{
+  width:100%;display:block;
+  position:relative;z-index:1;
+  filter:drop-shadow(0 -4px 22px rgba(233,69,96,.45));
+  animation:floatPhoto 4s ease-in-out infinite;
+  transition:filter .3s;
+}
+.photo-wrap:hover .profile-img{
+  filter:drop-shadow(0 -4px 32px rgba(233,69,96,.75)) drop-shadow(0 6px 18px rgba(83,52,131,.45));
+}
+@keyframes borderPulse{
+  0%,100%{box-shadow:0 0 18px rgba(233,69,96,.3),0 0 40px rgba(233,69,96,.1)}
+  50%{box-shadow:0 0 32px rgba(233,69,96,.65),0 0 65px rgba(233,69,96,.25)}
+}
+@keyframes borderShift{
+  0%,100%{background-position:0% 50%}50%{background-position:100% 50%}
+}
+@keyframes floatPhoto{
+  0%,100%{transform:translateY(0)}50%{transform:translateY(0px)}
+}
+
+@media(max-width:768px){
+  nav{padding:12px 20px}
+  .nav-links{display:none}
+  .hero{padding:90px 20px 50px;min-height:auto}
+  section{padding:42px 20px}
+  .cv-inner{flex-direction:column}
+  footer{padding:16px 20px}
+  .about-inner{grid-template-columns:1fr}
+  .photo-wrap{width:200px;margin:0 auto 28px;order:-1}
+}
+</style>
+</head>
+<body>
+
+<nav id="top">
+  <a href="#top" class="nav-logo">Brian <span>Rey</span></a>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi"    data-es="Sobre mí"    data-en="About">Sobre mí</a></li>
+    <li><a href="#servicios"   data-es="Servicios"   data-en="Services">Servicios</a></li>
+    <li><a href="#skills"      data-es="Skills"      data-en="Skills">Skills</a></li>
+    <li><a href="#experiencia" data-es="Experiencia" data-en="Experience">Experiencia</a></li>
+    <li><a href="#proyectos"   data-es="Proyectos"   data-en="Projects">Proyectos</a></li>
+    <li><a href="#contacto"    data-es="Contacto"    data-en="Contact">Contacto</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('es')">ES</button>
+      <button class="lang-btn"        onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <canvas id="hero-particles"></canvas>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero-content">
+    <h1 data-es="Hola, soy <span>Brian Rey</span>" data-en="Hi, I'm <span>Brian Rey</span>">Hola, soy <span>Brian Rey</span></h1>
+    <div class="hero-tags">
+      <span class="hero-tag" data-es="Contador Público" data-en="Accountant">Contador Público</span>
+      <span class="hero-tag" data-es="Data Specialist" data-en="Data Specialist">Data Specialist</span>
+      <span class="hero-tag" data-es="Team Lead" data-en="Team Lead">Team Lead</span>
+    </div>
+    <p class="hero-sub" data-es="Transformo datos en decisiones. <strong>Más de 4 años</strong> combinando visión contable-financiera con analítica avanzada en entornos corporativos de alto impacto." data-en="I turn data into decisions. <strong>Over 4 years</strong> combining accounting-financial vision with advanced analytics in high-impact corporate environments.">Transformo datos en decisiones. <strong>Más de 4 años</strong> combinando visión contable-financiera con analítica avanzada en entornos corporativos de alto impacto.</p>
+    <div class="hero-btns">
+      <a href="#proyectos" class="btn-primary" data-es="Ver proyectos" data-en="See projects">Ver proyectos</a>
+      <a href="#cv-download" class="btn-outline" data-es="Descargar CV" data-en="Download CV">Descargar CV</a>
+    </div>
+  </div>
+</div>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi">
+  <div class="about-inner">
+    <div class="about-text">
+      <div class="section-label" data-es="Quién soy" data-en="Who I am">Quién soy</div>
+      <div class="section-title" data-es="Sobre mí" data-en="About me">Sobre mí</div>
+      <p class="fade-in" style="font-size:15px;color:var(--muted);line-height:1.8"
+         data-es="Soy <strong style='color:#fff'>Contador Público</strong> graduado en la UNICEN (2015–2020), especializado en análisis de datos y liderazgo de equipos. Actualmente me desempeño como <strong style='color:#fff'>Data Specialist / Team Lead en Accenture</strong>, liderando el equipo de Service Management y diseñando soluciones analíticas para clientes internos y externos. Apasionado por la innovación tecnológica y el aprendizaje continuo."
+         data-en="I'm a <strong style='color:#fff'>Public Accountant</strong> from UNICEN (2015–2020), specialized in data analysis and team leadership. Currently working as <strong style='color:#fff'>Data Specialist / Team Lead at Accenture</strong>, leading the Service Management team and designing analytics solutions for internal and external clients. Passionate about technological innovation and continuous learning.">
+        Soy <strong style="color:#fff">Contador Público</strong> graduado en la UNICEN (2015–2020), especializado en análisis de datos y liderazgo de equipos. Actualmente me desempeño como <strong style="color:#fff">Data Specialist / Team Lead en Accenture</strong>, liderando el equipo de Service Management y diseñando soluciones analíticas para clientes internos y externos. Apasionado por la innovación tecnológica y el aprendizaje continuo.
+      </p>
+    </div>
+    <div class="photo-wrap">
+      <div class="photo-inner">
+        <img src="foto.png" alt="Brian Rey" class="profile-img">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-label" data-es="Qué ofrezco" data-en="What I offer">Qué ofrezco</div>
+  <div class="section-title" data-es="Servicios &amp; capacidades" data-en="Services &amp; capabilities">Servicios &amp; capacidades</div>
+  <div class="cards">
+    <div class="card fade-in">
+      <div class="card-icon ic-red">📊</div>
+      <h3>Business Intelligence</h3>
+      <p data-es="Dashboards en Power BI y Looker con KPIs y SLAs alineados a objetivos de negocio." data-en="Dashboards in Power BI and Looker with KPIs and SLAs aligned to business objectives.">Dashboards en Power BI y Looker con KPIs y SLAs alineados a objetivos de negocio.</p>
+    </div>
+    <div class="card fade-in">
+      <div class="card-icon ic-blue">🗄️</div>
+      <h3>Data Engineering</h3>
+      <p data-es="Pipelines ETL, consultas SQL complejas en BigQuery y Snowflake, transformación con Power Query." data-en="ETL pipelines, complex SQL in BigQuery and Snowflake, Power Query transformations.">Pipelines ETL, consultas SQL complejas en BigQuery y Snowflake, transformación con Power Query.</p>
+    </div>
+    <div class="card fade-in">
+      <div class="card-icon ic-teal">⚙️</div>
+      <h3 data-es="Automatización" data-en="Automation">Automatización</h3>
+      <p data-es="Soluciones con Excel VBA, AppScript, n8n y Python para eliminar trabajo manual." data-en="Solutions with VBA, AppScript, n8n and Python to eliminate manual work.">Soluciones con Excel VBA, AppScript, n8n y Python para eliminar trabajo manual.</p>
+    </div>
+    <div class="card fade-in">
+      <div class="card-icon ic-amber">💼</div>
+      <h3 data-es="Consultoría Financiera y Contable" data-en="Financial and Accounting Consulting">Consultoría Financiera y Contable</h3>
+      <p data-es="Análisis económico-financiero, costos, KPIs contables y elaboración de estados contables." data-en="Economic-financial analysis, cost calculation, accounting KPIs and financial statements.">Análisis económico-financiero, costos, KPIs contables y elaboración de estados contables.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Tech stack</div>
+  <div class="section-title" data-es="Herramientas &amp; tecnologías" data-en="Tools &amp; technologies">Herramientas &amp; tecnologías</div>
+  <div class="skills-grid">
+    <div class="skill-item fade-in"><span class="skill-dot d-red"></span><span class="skill-name">Power BI</span><span class="skill-lvl" data-es="Avanzado" data-en="Advanced">Avanzado</span></div>
+    <div class="skill-item fade-in"><span class="skill-dot d-blue"></span><span class="skill-name">SQL</span><span class="skill-lvl" data-es="Avanzado" data-en="Advanced">Avanzado</span></div>
+    <div class="skill-item fade-in"><span class="skill-dot d-blue"></span><span class="skill-name">BigQuery</span><span class="skill-lvl" data-es="Avanzado" data-en="Advanced">Avanzado</span></div>
+    <div class="skill-item fade-in"><span class="skill-dot d-amber"></span><span class="skill-name">Excel / VBA</span><span class="skill-lvl" data-es="Avanzado" data-en="Advanced">Avanzado</span></div>
+    <div class="skill-item fade-in"><span class="skill-dot d-teal"></span><span class="skill-name">Google Sheets</span><span class="skill-lvl" data-es="Avanzado" data-en="Advanced">Avanzado</span></div>
+    <div class="skill-item fade-in"><span class="skill-dot d-purple"></span><span class="skill-name">Python</span><span class="skill-lvl" data-es="Intermedio" data-en="Intermediate">Intermedio</span></div>
+    <div class="skill-item fade-in"><span class="skill-dot d-red"></span><span class="skill-name">Looker</span><span class="skill-lvl" data-es="Avanzado" data-en="Advanced">Avanzado</span></div>
+    <div class="skill-item fade-in"><span class="skill-dot d-blue"></span><span class="skill-name">Tableau</span><span class="skill-lvl" data-es="Intermedio" data-en="Intermediate">Intermedio</span></div>
+    <div class="skill-item fade-in"><span class="skill-dot d-teal"></span><span class="skill-name">n8n</span><span class="skill-lvl" data-es="Intermedio" data-en="Intermediate">Intermedio</span></div>
+    <div class="skill-item fade-in"><span class="skill-dot d-red"></span><span class="skill-name">GenAI</span><span class="skill-lvl" data-es="Avanzado" data-en="Advanced">Avanzado</span></div>
+    <div class="skill-item fade-in"><span class="skill-dot d-amber"></span><span class="skill-name">SAP (ECC/HANA)</span><span class="skill-lvl" data-es="Avanzado" data-en="Advanced">Avanzado</span></div>
+    <div class="skill-item fade-in"><span class="skill-dot d-purple"></span><span class="skill-name">Power Query</span><span class="skill-lvl" data-es="Avanzado" data-en="Advanced">Avanzado</span></div>
+    <div class="skill-item fade-in"><span class="skill-dot d-blue"></span><span class="skill-name">Apps Script</span><span class="skill-lvl" data-es="Intermedio" data-en="Intermediate">Intermedio</span></div>
+    <div class="skill-item fade-in"><span class="skill-dot d-amber"></span><span class="skill-name">MySQL</span><span class="skill-lvl" data-es="Avanzado" data-en="Advanced">Avanzado</span></div>
+  </div>
+</section>
+
+<!-- EXPERIENCIA -->
+<section id="experiencia">
+  <div class="section-label" data-es="Trayectoria" data-en="Career">Trayectoria</div>
+  <div class="section-title" data-es="Experiencia profesional" data-en="Professional experience">Experiencia profesional</div>
+
+  <div class="exp-item fade-in">
+    <div class="exp-date" data-es="Marzo 2024 — Presente" data-en="March 2024 — Present">Marzo 2024 — Presente</div>
+    <div class="exp-role" data-es="Especialista en Datos / Líder de equipo" data-en="Data Specialist / Team Lead">Especialista en Datos / Líder de equipo</div>
+    <div class="exp-company">Accenture</div>
+    <p class="exp-desc"
+       data-es="Líder del equipo de Service Management, responsable del diseño, soporte y evolución de servicios analíticos para clientes internos y externos. Coordinación técnica de proyectos de análisis de datos, implementación de automatizaciones avanzadas y soluciones BI. Facilitador entre áreas técnicas y de negocio. Capacitación y mentoring de analistas."
+       data-en="Team Lead for Service Management, responsible for the design, support, and evolution of analytics services for internal and external clients. Technical oversight for data analytics projects, implementation of advanced automations and BI solutions. Bridge between technical and business areas. Trained and mentored analysts.">Líder del equipo de Service Management, responsable del diseño, soporte y evolución de servicios analíticos para clientes internos y externos. Coordinación técnica de proyectos de análisis de datos, implementación de automatizaciones avanzadas y soluciones BI. Facilitador entre áreas técnicas y de negocio. Capacitación y mentoring de analistas.</p>
+    <div class="exp-tags">
+      <span class="tag">Team Lead</span><span class="tag">Power BI</span><span class="tag">SQL</span>
+      <span class="tag" data-es="Automatización" data-en="Automation">Automatización</span><span class="tag">Service Management</span>
+      <span class="tag">n8n</span><span class="tag">GenAI</span>
+    </div>
+  </div>
+
+  <div class="exp-item fade-in">
+    <div class="exp-date" data-es="Septiembre 2022 — Febrero 2024" data-en="September 2022 — February 2024">Septiembre 2022 — Febrero 2024</div>
+    <div class="exp-role" data-es="Analista de datos Senior" data-en="Senior Data Analyst">Analista de datos Senior</div>
+    <div class="exp-company">Accenture</div>
+    <p class="exp-desc"
+       data-es="Desarrollo de dashboards en Power BI y Looker para toma de decisiones. Análisis y creación de KPIs y SLAs alineados a objetivos estratégicos. Reportes avanzados en Excel y Google Sheets. ETL desde diversas fuentes asegurando calidad de datos. Análisis de procesos para su automatización."
+       data-en="Built decision-support dashboards in Power BI and Looker. Analyzed and created KPIs and SLAs aligned to strategic objectives. Advanced reports in Excel and Google Sheets. ETL from diverse sources ensuring data quality. Process analyses for continuous improvement and automation.">Desarrollo de dashboards en Power BI y Looker para toma de decisiones. Análisis y creación de KPIs y SLAs alineados a objetivos estratégicos. Reportes avanzados en Excel y Google Sheets. ETL desde diversas fuentes asegurando calidad de datos. Análisis de procesos para su automatización.</p>
+    <div class="exp-tags">
+      <span class="tag">Power BI</span><span class="tag">Looker</span><span class="tag">Google Sheets</span><span class="tag">BigQuery</span><span class="tag">KPIs / SLAs</span><span class="tag">Excel</span><span class="tag">SQL</span>
+    </div>
+  </div>
+
+  <div class="exp-item fade-in">
+    <div class="exp-date" data-es="Marzo 2020 — Agosto 2022" data-en="Marzo 2020 — August 2022">Marzo 2020 — Agosto 2022</div>
+    <div class="exp-role" data-es="Asesor Externo de Empresas" data-en="External Business Advisor">Asesor Externo de Empresas</div>
+    <div class="exp-company" data-es="Estudio Contable" data-en="Accounting Firm">Estudio Contable</div>
+    <p class="exp-desc"
+       data-es="Análisis económico-financiero, cálculo de costos y rendimientos operativos. Desarrollo de dashboards y KPIs para toma de decisiones. Elaboración de soluciones ante desvíos detectados. Liquidaciones impositivas y elaboración de estados contables."
+       data-en="Economic-financial analysis, cost calculations and operating performance. Built dashboards and KPIs for decision-making. Proposed corrective actions for detected variances. Prepared tax filings and financial statements.">Análisis económico-financiero, cálculo de costos y rendimientos operativos. Desarrollo de dashboards y KPIs para toma de decisiones. Elaboración de soluciones ante desvíos detectados. Liquidaciones impositivas y elaboración de estados contables.</p>
+    <div class="exp-tags">
+      <span class="tag" data-es="Contabilidad" data-en="Accounting">Contabilidad</span>
+      <span class="tag">Excel / VBA</span><span class="tag">KPIs</span>
+      <span class="tag" data-es="Finanzas" data-en="Finance">Finanzas</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos">
+  <div class="section-label" data-es="Trabajo real" data-en="Real work">Trabajo real</div>
+  <div class="section-title" data-es="Proyectos destacados" data-en="Featured projects">Proyectos destacados</div>
+
+  <div class="project-card fade-in">
+    <div class="project-header">
+      <div>
+        <div class="project-sector" data-es="Fintech · Análisis de remesas" data-en="Fintech · Remittances analysis">Fintech · Análisis de remesas</div>
+        <div class="project-name" data-es="Dashboard de Remesas Internacionales" data-en="International Remittances Dashboard">Dashboard de Remesas Internacionales</div>
+        <p class="project-desc"
+           data-es="Análisis integral de remesas enviadas por país, incluyendo importes, estados de transacción y tendencias temporales. Desarrollado para cliente fintech para optimizar el monitoreo operativo y la toma de decisiones comerciales."
+           data-en="Comprehensive remittance analysis by country, including amounts, transaction statuses and time trends. Built for a fintech client to optimize operational monitoring and commercial decision-making.">Análisis integral de remesas enviadas por país, incluyendo importes, estados de transacción y tendencias temporales. Desarrollado para cliente fintech para optimizar el monitoreo operativo y la toma de decisiones comerciales.</p>
+      </div>
+      <div class="project-badges">
+        <span class="badge badge-red">Looker Studio</span>
+        <span class="badge badge-purple">Fintech</span>
+        <span class="badge badge-gray" data-es="Análisis internacional" data-en="International analysis">Análisis internacional</span>
+        <span class="badge badge-gray">KPIs</span>
+      </div>
+    </div>
+    <div class="embed-wrap">
+      <div class="embed-label" data-es="Dashboard interactivo en vivo" data-en="Live interactive dashboard">Dashboard interactivo en vivo</div>
+      <div class="embed-frame">
+        <iframe src="https://datastudio.google.com/embed/reporting/63af2fe5-7f01-4454-af82-0825c360d833/page/lLNaF" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- CV DOWNLOAD -->
+<section id="cv-download" class="cv-band">
+  <div class="cv-inner">
+    <div class="cv-text">
+      <h3 data-es="Descargá mi CV" data-en="Download my Resume">Descargá mi CV</h3>
+      <p data-es="Disponible en español e inglés." data-en="Available in Spanish and English.">Disponible en español e inglés.</p>
+    </div>
+    <div class="cv-btns">
+      <a href="BRIAN_REY_-_CV.pdf" download class="btn-primary">📄 <span data-es="CV en Español" data-en="CV en Español">CV en Español</span></a>
+      <a href="RESUME_BRIAN_REY.pdf" download class="btn-outline">📄 <span data-es="Resume in English" data-en="Resume in English">Resume in English</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contact-box fade-in">
+    <h2 data-es="¿Hablamos?" data-en="Let's talk?">¿Hablamos?</h2>
+    <p data-es="Abierto a nuevas oportunidades, proyectos freelance y consultoría en analytics y BI." data-en="Open to new opportunities, freelance projects and analytics/BI consulting.">Abierto a nuevas oportunidades, proyectos freelance y consultoría en analytics y BI.</p>
+    <div class="contact-links">
+      <a href="https://linkedin.com/in/brianreys" target="_blank" class="clink">💼 LinkedIn</a>
+      <a href="mailto:reybriansantiago@gmail.com" class="clink">✉️ <span data-es="Enviar email" data-en="Send email">Enviar email</span></a>
+      <a href="tel:+542284308195" class="clink">📞 +54 2284 308195</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 · Brian <span>Rey</span> · Data Specialist &amp; BI Analyst · Argentina</footer>
+
+<script>
+// PARTICLES
+(function(){
+  const c=document.getElementById('hero-particles');
+  if(!c)return;
+  const ctx=c.getContext('2d');
+  let W,H,pts=[];
+  const COLORS=['233,69,96','83,52,131','55,138,221'];
+  function rnd(a,b){return a+Math.random()*(b-a)}
+  function init(){
+    pts=[];
+    const n=Math.max(40,Math.floor(W*H/12000));
+    for(let i=0;i<n;i++)pts.push({
+      x:rnd(0,W),y:rnd(0,H),
+      vx:rnd(-.25,.25),vy:rnd(-.55,-.08),
+      r:rnd(.7,2.3),o:rnd(.15,.65),
+      col:COLORS[Math.floor(Math.random()*COLORS.length)]
+    });
+  }
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;init()}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${p.col},${p.o})`;
+      ctx.fill();
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.y<-6){p.y=H+6;p.x=rnd(0,W)}
+      if(p.x<-6)p.x=W+6;
+      if(p.x>W+6)p.x=-6;
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);
+  resize();draw();
+})();
+
+// LANG
+let lang='es';
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase()===l));
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-es]').forEach(el=>{
+    const v=el.getAttribute('data-'+l);
+    if(v)el.innerHTML=v;
+  });
+}
+// FADE IN
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.07});
+document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
+// ACTIVE NAV
+const secs=document.querySelectorAll('section[id]');
+const lks=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id});
+  lks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+});
+</script>
+</body>
+</html>
